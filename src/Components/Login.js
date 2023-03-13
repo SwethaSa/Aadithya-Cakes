@@ -15,7 +15,7 @@ import { Link } from "react-router-dom";
 import { GiEyelashes, GiTiredEye } from "react-icons/gi";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { GoogleLogin, useGoogleLogin } from '@react-oauth/google';
+import { GoogleLogin } from '@react-oauth/google';
 
 
 const PasswordInput = ({ showPassword, handleClickShowPassword, ...rest }) => {

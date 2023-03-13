@@ -93,6 +93,7 @@ const SignUp = ({ handleClose }) => {
         lastName,
         phone,
       });
+      
       console.log(response);
       setEmail("");
       setPassword("");
@@ -103,7 +104,7 @@ const SignUp = ({ handleClose }) => {
       setShowToast(true);
       toast.success("Sign up successful! Please Login to Continue");
       setShowLogin(true);
-
+      showToast(false);
     } catch (err) {
       setLoading(false);
       setError(err.response.data.msg);

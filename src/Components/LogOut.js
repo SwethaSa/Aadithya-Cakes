@@ -1,19 +1,17 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { NavItem, Button, Modal, ModalHeader, ModalBody } from "reactstrap";
 import "../Css/Dashboard.css";
-import Preloader from "./Preloader";
-import { toast } from "react-toastify";
+// import Preloader from "./Preloader";
+// import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { useNavigate } from "react-router-dom";
 import axios from 'axios';
 
 
 function LogOut(args) {
-  const [loading, setLoading] = useState(true);
+  // const [loading, setLoading] = useState(true);
   const [modal, setModal] = useState(false);
 
   const toggleModal = () => setModal(!modal);
-  const navigate = useNavigate();
  
 
   const logoutUser = () => {
