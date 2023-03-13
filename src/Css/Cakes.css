@@ -1,0 +1,41 @@
+
+
+.navi{
+    background-color: whitesmoke;
+    margin-top: 0px;
+}
+
+.card-img-top{
+
+    padding: 1cm;
+}
+
+.card{
+    margin-top: 1cm;
+}
+
+
+.cardzz {
+    position: relative;
+    border-radius: 10px;
+    overflow: hidden;
+    transition: all 0.3s ease-out;
+    outline: white;
+    width: 10px; /* decrease width */
+    height: 500px; /* increase height */
+  }
+  
+  .cardzz:hover {
+    transform: scale(1.10);
+    box-shadow: 10px 100px 200px rgba(12, 0, 0, 0.3), 0 6prgba(255, 255, 255, 0.3, 0.3);
+  }
+  
+ 
+  
+  .cardzz:hover::before {
+    transform: scale(1.1);
+    opacity: 1;
+  }
+  
+ 
+ 
