@@ -9,7 +9,6 @@ import {
   Modal,
   ModalHeader,
   ModalBody,
-  Badge,
 } from "reactstrap";
 import { HiInformationCircle } from "react-icons/hi";
 import "../Css/Cakes.css";
@@ -37,7 +36,7 @@ function Cakes() {
   const [selectedCake, setSelectedCake] = useState({});
   const [isOpen, setIsOpen] = useState(false);
   const [loading, setLoading] = useState(true);
-  const [cartCount, setCartCount] = useState(0);
+ 
 
   const toggleModal = () => setModal(!modal);
 
@@ -58,10 +57,7 @@ function Cakes() {
     toggleModal();
   };
 
-  const handleAddToBasket = (cake) => {
-    setCartCount+=1;
-    };
-  
+ 
 
   const toggle = () => setIsOpen(!isOpen);
 
@@ -110,7 +106,7 @@ function Cakes() {
                       <NavbarBrand style={{ color: "white" }} href="">
                         <div>
                           <GiBasket size={40} />
-                          <Badge color="dark">{cartCount}</Badge>
+                         
                         </div>
                         Bag
                       </NavbarBrand>
@@ -153,7 +149,7 @@ function Cakes() {
 </select>
 
           </div><br></br>
-                      <Button color="dark" onClick={() => handleAddToBasket(cake)}>
+                      <Button color="dark" >
                         Add to Basket
                       </Button>{" "}
                       <Button color="dark" onClick={() => handleInfoClick(cake.id)}>
