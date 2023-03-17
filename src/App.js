@@ -6,7 +6,9 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Dashboard from "./Components/Dashboard";
 import Cakes from "./Components/Cakes.js"
-import ProfilePage from "./Components/Profile";
+import CartPage from "./Components/Basket";
+import IceCakes from "./Components/IceCakes";
+import FondantCakes from "./Components/Fondant.js";
 
 function App() {
  
@@ -41,10 +43,17 @@ function App() {
           element={<Cakes />}
         ></Route>
         <Route
-          path="/user-profile"
-          element={<ProfilePage />}
+          path="/icecakes"
+          element={< IceCakes/>}
         ></Route>
-        
+         <Route
+          path="/fondantcakes"
+          element={< FondantCakes/>}
+        ></Route>
+        <Route
+          path="/cart"
+          element={<CartPage />}
+        ></Route>
       </Routes>
 
 

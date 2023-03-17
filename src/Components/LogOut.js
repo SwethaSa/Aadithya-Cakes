@@ -5,6 +5,7 @@ import "../Css/Dashboard.css";
 // import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import axios from 'axios';
+import {RiLogoutBoxRFill} from 'react-icons/ri'
 
 
 function LogOut(args) {
@@ -17,7 +18,7 @@ function LogOut(args) {
   const logoutUser = () => {
         try {
             localStorage.removeItem('token');
-           axios.post('http://localhost:4000/users/logout');
+           axios.post('https://ac-swethasa.vercel.app/users/logout');
           window.location.href = '/';
         } catch (error) {
           console.error(error);
@@ -31,9 +32,10 @@ function LogOut(args) {
           <div>
             <div className="navbar-nav-wrapper">
               <NavItem>
-                <Button color="danger" onClick={() => setModal(true)}>
+                <div className="logoutt" onClick={() => setModal(true)}>
+                  <RiLogoutBoxRFill size={40}/><br></br>
                   Logout
-                </Button>
+                </div>
                 <Modal isOpen={modal} toggle={toggleModal}>
                   <ModalHeader toggle={toggleModal}>
                     Are You Sure? You want to Logout?

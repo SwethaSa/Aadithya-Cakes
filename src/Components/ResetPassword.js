@@ -44,7 +44,7 @@ const ResetPassword = () => {
 
     try {
       const response = await fetch(
-        `http://localhost:4000/reset-password/${token}`,
+        `https://ac-swethasa.vercel.app/reset-password/${token}`,
         {
           method: "POST",
           headers: {
