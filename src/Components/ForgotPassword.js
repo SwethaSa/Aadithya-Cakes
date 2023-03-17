@@ -40,7 +40,7 @@ const ForgotPassword = ({ handleClose }) => {
     try {
       setLoading(true);
       const response = await axios.post(
-        "http://localhost:4000/forgot-password",
+        "https://ac-swethasa.vercel.app/forgot-password",
         { email }
       );
       setEmail("");

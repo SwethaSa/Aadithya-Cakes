@@ -15,7 +15,6 @@ import { Link } from "react-router-dom";
 import { GiEyelashes, GiTiredEye } from "react-icons/gi";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { GoogleLogin } from '@react-oauth/google';
 
 
 const PasswordInput = ({ showPassword, handleClickShowPassword, ...rest }) => {
@@ -52,30 +51,7 @@ const Login = ({ handleClose }) => {
     setShowSignup(false);
   };
 
-  function onSignIn(googleUser) {
-    // Get the user's ID token and pass it to your back-end API
-    var id_token = googleUser.getAuthResponse().id_token;
-    // Send the ID token to your back-end API
-    fetch('/users/google-signin', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({ idToken: id_token })
-    })
-    .then(response => {
-      if (!response.ok) {
-        throw new Error('Network response was not ok');
-      }
-      return response.json();
-    })
-    .then(data => {
-      console.log(data);
-    })
-    .catch(error => {
-      console.error('There was an error!', error);
-    });
-  }
+ 
   
 
   const handleSubmit = (e) => {
@@ -90,13 +66,16 @@ const Login = ({ handleClose }) => {
     }
     setLoading(true);
     axios
-      .post("http://localhost:4000/users/login", { email, password })
+      .post("https://ac-swethasa.vercel.app/users/login", { email, password })
       .then((res) => {
         localStorage.setItem("token", res.data.token);
         toast.success("Login successful 😍👍 !! Redirecting to dashboard...");
         setTimeout(() => {
           window.location.href = "/dashboard";
         }, 3000);
+        setTimeout(() => {
+          localStorage.removeItem('token');
+        }, 7200000);
       })
       .catch((err) => {
         if (err.response.data.msg) {
@@ -109,6 +88,7 @@ const Login = ({ handleClose }) => {
         setLoading(false);
       });
   };
+
 
   return (
     <div className="login-container">
@@ -161,15 +141,11 @@ const Login = ({ handleClose }) => {
         </Button> 
         <br></br><br></br>
         
-              <div className="text-center mb-4">Or continue with</div>
+          
 
-              <GoogleLogin
-  clientId="519326211542-04phvf32d3lrp7etthra88dejue7q2g5.apps.googleusercontent.com"
-  onSuccess={onSignIn}
-  onFailure={() => console.log('Login Failed')}
-/>
-
+             
               <br></br>
+
               <div className="login-link" onClick={handleSignup}>
                 Don't have an account? Sign Up
               </div>

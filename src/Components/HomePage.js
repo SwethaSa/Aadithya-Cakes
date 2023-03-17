@@ -4,7 +4,6 @@ import Login from "./Login";
 import SignUp from "./SignUp";
 import Typewriter from "typewriter-effect";
 import Preloader from "./Preloader";
-
 function HomePage() {
   const [showLogin, setShowLogin] = useState(false);
   const [showSignup, setShowSignup] = useState(false);

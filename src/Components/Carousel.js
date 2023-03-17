@@ -4,19 +4,15 @@ import {
   CarouselItem,
   CarouselControl,
   CarouselIndicators,
-  CarouselCaption,
 } from 'reactstrap';
-import '../Css/Cakes.css'; // import CSS file
+import '../Css/Cakes.css'; 
 
 const items = [
   {
     id: 1,
     imageSrc: require('../assets/Banner.jpg'),
   },
-  {
-    id: 2,
-    imageSrc: require('../assets/Banner11.jpg'),
-  },
+  
   {
     id: 3,
     imageSrc: require('../assets/Banner3.jpg'),
@@ -53,11 +49,7 @@ function CarouselImg(props) {
         onExited={() => setAnimating(false)}
       >
         <img src={item.imageSrc} alt={item.altText} style={{ width: '100%' }} />
-        <CarouselCaption
-          className="text-danger"
-          captionText={item.caption}
-          captionHeader={item.caption}
-        />
+        
       </CarouselItem>
     );
   });

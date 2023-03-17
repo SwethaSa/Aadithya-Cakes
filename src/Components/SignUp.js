@@ -86,7 +86,7 @@ const SignUp = ({ handleClose }) => {
     }
     setLoading(true);
     try {
-      const response = await axios.post("http://localhost:4000/users/signup", {
+      const response = await axios.post("https://ac-swethasa.vercel.app/users/signup", {
         email,
         password,
         firstName,

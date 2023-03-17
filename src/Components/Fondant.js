@@ -31,10 +31,10 @@ import {isLoggedIn}  from './auth.js';
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-function Cakes(args) {
-  const [cakes, setCakes] = useState([]);
+function FondantCakes(args) {
+  const [fondantcakes, setFondantCakes] = useState([]);
   const [modal, setModal] = useState(false);
-  const [selectedCake, setSelectedCake] = useState({});
+  const [selectedFondantCake, setSelectedFondantCake] = useState({});
   const [isOpen, setIsOpen] = useState(false);
   const [loading, setLoading] = useState(true);
   const [quantity, setQuantity] = useState("");
@@ -42,33 +42,33 @@ function Cakes(args) {
 
   const toggleModal = () => setModal(!modal);
 
-  const fetchCakes = async () => {
-    const response = await fetch("https://ac-swethasa.vercel.app/cakes");
+  const fetchfondantCakes = async () => {
+    const response = await fetch("https://ac-swethasa.vercel.app/fondantcakes");
     const data = await response.json();
-    setCakes(data);
+    setFondantCakes(data);
   };
 
   useEffect(() => {
-    fetchCakes();
+    fetchfondantCakes();
   }, []);
 
   const handleInfoClick = async (id) => {
-    const response = await fetch(`https://ac-swethasa.vercel.app/cakes/${id}`);
+    const response = await fetch(`https://ac-swethasa.vercel.app/fondantcakes/${id}`);
     const data = await response.json();
-    setSelectedCake(data);
+    setSelectedFondantCake(data);
     toggleModal();
   };
 
  
   
-  const handleAddToCart = (cake) => {
-    setSelectedCake(cake);
+  const handleAddToCart = (fondantcake) => {
+    setSelectedFondantCake(fondantcake);
     
     toggleModal();
   };
 
-  const handleAddToCartApi = async (selectedCake) => {
-    const id = selectedCake.id;
+  const handleAddToCartApi = async (selectedFondantCake) => {
+    const id = selectedFondantCake.id;
     const quantity = document.getElementById("quantity").value;
     const token = localStorage.getItem('token');
   
@@ -105,13 +105,13 @@ function Cakes(args) {
   
 
 
-const handleRemoveFromCart = async (cake) => {
-  if (!cake.id) {
+const handleRemoveFromCart = async (fondantcake) => {
+  if (!fondantcake.id) {
     console.log("Error: cake does not have an id property");
     return;
   }
 
-  const id = cake.id;
+  const id = fondantcake.id;
   try {
     const token = localStorage.getItem('token');
     const response = await fetch(`https://ac-swethasa.vercel.app/cart/${id}/remove-from-cart`, {
@@ -194,34 +194,34 @@ const handleRemoveFromCart = async (cake) => {
             <br></br>
             <div className="row">
               <CarouselImg />
-              {cakes.map((cake) => (
-                <div className="cardzz col-md-3 " key={cake.id}>
+              {fondantcakes.map((fondantcake) => (
+                <div className="cardzz col-md-3 " key={fondantcake.id}>
                   <Card>
                     <CardImg
                       className="cakecard"
                       top
                       width="100%"
-                      src={cake.image}
-                      alt={cake.itemName}
+                      src={fondantcake.image}
+                      alt={fondantcake.itemName}
                     />
                     <CardBody>
-                      <CardTitle tag="h5">{cake.itemName}</CardTitle>
+                      <CardTitle tag="h5">{fondantcake.itemName}</CardTitle>
                       <CardSubtitle
                         tag="h6"
                         className="mb-2"
-                      >{`₹${cake.price}`}</CardSubtitle>
+                      >{`₹${fondantcake.price}`}</CardSubtitle>
                       <CardSubtitle
                         tag="h6"
                         className="mb-2"
-                      >{`${cake.description}`}</CardSubtitle>
+                      >{`${fondantcake.description}`}</CardSubtitle>
                     <br></br>
-                      <Button onClick={() => handleAddToCart(cake)} color="dark" >
+                      <Button onClick={() => handleAddToCart(fondantcake)} color="dark" >
                         Add to Basket
                       </Button>{" "}
-                      <Button  onClick={() => handleRemoveFromCart(cake)} color="dark" >
+                      <Button  onClick={() => handleRemoveFromCart(fondantcake)} color="dark" >
                         Remove from Basket
                       </Button>
-                      <Button color="dark" onClick={() => handleInfoClick(cake.id)}>
+                      <Button color="dark" onClick={() => handleInfoClick(fondantcake.id)}>
                         <i>
                           <HiInformationCircle />
                         </i>
@@ -232,20 +232,20 @@ const handleRemoveFromCart = async (cake) => {
               ))}
               <Modal isOpen={modal} toggle={toggleModal}>
                 <ModalHeader toggle={toggleModal}>
-                {selectedCake.image}
-                  {selectedCake.title}
+                {selectedFondantCake.image}
+                  {selectedFondantCake.title}
                 </ModalHeader>
                 <ModalBody>
-                  <p>{selectedCake.price}</p>
-                  <p>{selectedCake.description}</p>
+                  <p>{selectedFondantCake.price}</p>
+                  <p>{selectedFondantCake.description}</p>
                 </ModalBody>
               </Modal>
               <Modal isOpen={modal} toggle={toggleModal}>
-  <ModalHeader toggle={toggleModal}>{selectedCake.itemName}</ModalHeader>
+  <ModalHeader toggle={toggleModal}>{selectedFondantCake.itemName}</ModalHeader>
   <ModalBody>
-    <img width="130" height="130" className="cakecard" src={selectedCake.image} alt={selectedCake.itemName} />
-    <p>{`Price: ₹${selectedCake.price}`}</p>
-    <p>{`Description: ${selectedCake.description}`}</p>
+    <img width="130" height="130" className="cakecard" src={selectedFondantCake.image} alt={selectedFondantCake.itemName} />
+    <p>{`Price: ₹${selectedFondantCake.price}`}</p>
+    <p>{`Description: ${selectedFondantCake.description}`}</p>
     <label htmlFor="quantity">Quantity: </label>
     <Input
       value={quantity}
@@ -256,7 +256,7 @@ const handleRemoveFromCart = async (cake) => {
       min="1"
       required
     />
-    <Button color="dark" disabled={!quantity} onClick={() => handleAddToCartApi(selectedCake)}>
+    <Button color="dark" disabled={!quantity} onClick={() => handleAddToCartApi(selectedFondantCake)}>
       Add to Basket
     </Button>{" "}
   </ModalBody>
@@ -274,4 +274,4 @@ const handleRemoveFromCart = async (cake) => {
   );
 }
 
-export default Cakes;
+export default FondantCakes;

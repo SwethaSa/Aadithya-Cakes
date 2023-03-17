@@ -11,18 +11,12 @@ import {
 import "../Css/Dashboard.css";
 import Logos from "../assets/Logo.png";
 import { GiBasket } from "react-icons/gi";
-import { BsPersonLinesFill } from "react-icons/bs";
 import Icon1 from "../assets/Cakes.jpg";
 import Icon3 from "../assets/Snacks.jpg";
 import Icon4 from "../assets/Drinks.jpg";
-import Icon5 from "../assets/Sweets.jpg";
-import Icon6 from "../assets/Chocolates.jpg";
 import Preloader from "./Preloader";
 import LogOut from "../Components/LogOut";
 import {isLoggedIn}  from './auth.js';
-import { Link } from "react-router-dom";
-
-
 function Dashboard(args) {
   const [isOpen, setIsOpen] = useState(false);
   const [loading, setLoading] = useState(true);
@@ -44,12 +38,12 @@ function Dashboard(args) {
       {!loading && (
     <>
      {isLoggedIn() ? (
-      <div>
+      <div className="bg-main">
         <Navbar
           {...args}
           style={{
-            backgroundImage: "linear-gradient(to left, #ff512f, #dd2476)",
-            borderRadius: "1cm",
+            background: "#fff",
+            borderRadius: "10px",
             marginTop: "2cm",
             height: "130px",
           }}
@@ -63,24 +57,18 @@ function Dashboard(args) {
           <Collapse isOpen={isOpen} navbar>
             <div className="navbar-nav-wrapper">
               <Nav className="mr-auto" navbar>
-                <NavItem>
-                  <NavbarBrand tag={Link} to="/user-profile" style={{ color: "white" }} >
-                    <div>
-                      <BsPersonLinesFill size={40} />
-                    </div>
-                    Profile
+              <NavItem>
+                  <NavbarBrand style={{ color: "black" }} href="/cart">
+                 
+                      <GiBasket size={40} /><br></br>
+                    
+                    Basket
                   </NavbarBrand>
                 </NavItem>
                 <NavItem>
-                  <NavbarBrand style={{ color: "white" }} href="">
-                    <div>
-                      <GiBasket size={40} />
-                    </div>
-                    Bag
-                  </NavbarBrand>
-                </NavItem>
-                <NavItem>
+                  <NavbarBrand style={{ cursor: 'pointer' }}>
                   <LogOut/>
+                  </NavbarBrand >
                 </NavItem>
               </Nav>
             </div>
@@ -105,33 +93,22 @@ function Dashboard(args) {
             <div className="icon2">
               <a href="/cakes">
                 <img src={Icon1} alt="Loading" className="icon1" />
-                <label className="label-icons">Cakes</label>
+                <label className="label-icons">Butter Cream</label>
               </a>
             </div>
             <div className="icon2">
-              <a href="/snacks">
+              <a href="/icecakes">
                 <img src={Icon3} alt="Loading" className="icon3" />
-                <label className="label-icons">Snacks</label>
+                <label className="label-icons">Fresh Cream</label>
               </a>
             </div>
             <div className="icon2">
-              <a href="/drinks">
+              <a href="/fondantcakes">
                 <img src={Icon4} alt="Loading" className="icon4" />
-                <label className="label-icons">Drinks</label>
+                <label className="label-icons">Fondant Cakes</label>
               </a>
             </div>
-            <div className="icon2">
-              <a href="/sweets">
-                <img src={Icon5} alt="Loading" className="icon5" />
-                <label className="label-icons">Sweets</label>
-              </a>
-            </div>
-            <div className="icon2">
-              <a href="/chocolates">
-                <img src={Icon6} alt="Loading" className="icon6" />
-                <label className="label-icons">Chocolates</label>
-              </a>
-            </div>
+            
           </div>
         </div>
       </div>
